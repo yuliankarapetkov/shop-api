@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.connect(`mongodb://admin:${process.env.MONGO_ATLAS_PW}@shop-shard-00-00-qjun3.mongodb.net:27017,shop-shard-00-01-qjun3.mongodb.net:27017,shop-shard-00-02-qjun3.mongodb.net:27017/test?ssl=true&replicaSet=shop-shard-0&authSource=admin&retryWrites=true`);
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
