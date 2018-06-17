@@ -6,9 +6,9 @@ const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
     Product.find()
+        .select('-__v')
         .exec()
         .then(docs => {
-            console.log(docs);
             res.status(200).json(docs);
         })
         .catch(err => {
